@@ -2,9 +2,9 @@ name: Frontend CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   # Job til at køre npm audit
@@ -42,7 +42,7 @@ jobs:
 
       - name: Start application
         run: npm run dev &
-      
+
       - name: Wait for application to be ready
         run: npx wait-on http://localhost:5173
 
@@ -84,3 +84,16 @@ jobs:
 
       - name: Run unit tests
         run: npm run test:unit
+
+  # Job til at kigge igennem HTML
+  proof-html:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Tilføjelse af proof-html actionen
+      - name: Check HTML
+        uses: anishathalye/proof-html@v2
+        with:
+          directory: ./src
