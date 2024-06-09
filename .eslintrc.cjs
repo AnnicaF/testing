@@ -21,5 +21,6 @@ module.exports = {
   },
   rules:{
     'no-unused-vars': 'warn',
+    'no-var': 'error', // Forbyd brug af var
   }
 }
